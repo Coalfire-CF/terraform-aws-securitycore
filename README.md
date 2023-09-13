@@ -3,82 +3,28 @@
 
 </div>
 
-# Coalfire pak README Template
-
-## Repository Title
-
-Include the name of the Repository as the header above e.g. `ACE-Cloud-Service`
+## ACE-AWS-SecurityCore
 
 ## Dependencies
 
-List any dependencies here. E.g. security-core, region-setup
+- IAM AWS Accounts
 
 ## Resource List
 
-Insert a high-level list of resources created as a part of this module. E.g.
-
-- Storage Account
-- Containers
-- Storage share
-- Lifecycle policy
-- CMK key and Iam Role Assignment
-- Monitor diagnostic setting
+- S3 for Terraform State
+- DynamoDB for Terraform State
+- KMS keys for DynamoDB and S3
+- IAM roles for above resrouces.
 
 ## Code Updates
 
-If applicable, add here. For example, updating variables, updating `tstate.tf`, or remote data sources.
-
-`tstate.tf` Update to the appropriate version and storage accounts, see sample
-
-``` hcl
-terraform {
-  required_version = ">= 1.1.7"
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.45.0"
-    }
-  }
-  backend "azurerm" {
-    resource_group_name  = "prod-mp-core-rg"
-    storage_account_name = "prodmpsatfstate"
-    container_name       = "tfstatecontainer"
-    environment          = "usgovernment"
-    key                  = "ad.tfstate"
-  }
-}
-```
-
-Change directory to the `active-directory` folder
-
-Run `terraform init` to download modules and create initial local state file.
-
-Run `terraform plan` to ensure no errors and validate plan is deploying expected resources.
-
-Run `terraform apply` to deploy infrastructure.
-
-Update the `remote-data.tf` file to add the security state key
-
-``` hcl
-
-data "terraform_remote_state" "usgv-ad" {
-  backend = "azurerm"
-  config = {
-    storage_account_name = "${local.storage_name_prefix}satfstate"
-    resource_group_name  = "${local.resource_prefix}-core-rg"
-    container_name       = "${var.location_abbreviation}${var.app_abbreviation}tfstatecontainer"
-    environment          = var.az_environment
-    key                  = "${var.location_abbreviation}-ad.tfstate"
-  }
-}
-```
 
 ## Deployment Steps
 
 This module can be called as outlined below.
 
 - Change directories to the `reponame` directory.
-- From the `terraform/azure/reponame` directory run `terraform init`.
+- From the `terraform/aws/security-core` directory run `terraform init`.
 - Run `terraform plan` to review the resources being created.
 - If everything looks correct in the plan output, run `terraform apply`.
 
@@ -87,12 +33,12 @@ This module can be called as outlined below.
 Include example for how to call the module below with generic variables
 
 ```hcl
-provider "azurerm" {
+provider "aws" {
   features {}
 }
 
-module "core_sa" {
-  source                    = "github.com/Coalfire-CF/ACE-Azure-StorageAccount?ref=vX.X.X"
+module "securitycore" {
+  source                    = "github.com/Coalfire-CF/ACE-AWS-SecurityCore?ref=draft"
   name                       = "${replace(var.resource_prefix, "-", "")}tfstatesa"
   resource_group_name        = azurerm_resource_group.management.name
   location                   = var.location
