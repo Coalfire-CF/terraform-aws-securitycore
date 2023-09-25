@@ -3,7 +3,7 @@
 
 </div>
 
-## ACE-AWS-SecurityCore
+## ACE-AWS-SecurityCore Module
 
 ## Dependencies
 
