@@ -14,7 +14,7 @@
 - S3 for Terraform State
 - DynamoDB for Terraform State
 - KMS keys for DynamoDB and S3
-- IAM roles for above resrouces.
+- IAM roles for above resources
 
 ## Code Updates
 
