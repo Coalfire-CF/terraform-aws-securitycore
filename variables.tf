@@ -10,7 +10,7 @@ variable "resource_prefix" {
 
 variable "application_account_numbers" {
   description = "Account IDs for application accounts to be used in IAM"
-  type        = string
+  type        = list(string)
 }
 
 variable "account_number" {
