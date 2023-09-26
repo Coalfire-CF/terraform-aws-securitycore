@@ -18,4 +18,9 @@ variable "account_number" {
   type = string
 }
 
+variable "s3_kms_key_id" {
+  description = "the aws kms key id for S3 buckets"
+  type = string
+}
+
 
