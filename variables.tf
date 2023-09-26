@@ -18,9 +18,16 @@ variable "account_number" {
   type = string
 }
 
-variable "s3_kms_key_id" {
-  description = "the aws kms key id for S3 buckets"
-  type = string
+variable "create_dynamo_kms_key" {
+  description = "create KMS key for dynamodb"
+  type        = bool
+  default     = true
+}
+
+variable "create_s3_kms_key" {
+  description = "create KMS key for S3"
+  type        = bool
+  default     = true
 }
 
 
