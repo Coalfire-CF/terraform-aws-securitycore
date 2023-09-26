@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "s3_key" {
         "*"]
       principals {
         identifiers = [
-          "arn:${data.aws_partition.current}:iam::${statement.value}:root"]
+          "arn:${data.aws_partition.current.partition}:iam::${statement.value}:root"]
         type = "AWS"
       }
     }
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "s3_key" {
     principals {
       type = "AWS"
       identifiers = [
-        "arn:${data.aws_partition.current}:iam::${var.account_number}:root"]
+        "arn:${data.aws_partition.current.partition}:iam::${var.account_number}:root"]
     }
   }
 
@@ -78,7 +78,7 @@ data "aws_iam_policy_document" "s3_key" {
       test = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
       values = [
-        "arn:${data.aws_partition.current}:cloudtrail:*:${var.account_number}:trail/*"]
+        "arn:${data.aws_partition.current.partition}:cloudtrail:*:${var.account_number}:trail/*"]
     }
     principals {
       type = "Service"
@@ -99,7 +99,7 @@ data "aws_iam_policy_document" "s3_key" {
         test = "StringLike"
         variable = "kms:EncryptionContext:aws:cloudtrail:arn"
         values = [
-          "arn:${data.aws_partition.current}:cloudtrail:*:${statement.value}:trail/*"]
+          "arn:${data.aws_partition.current.partition}:cloudtrail:*:${statement.value}:trail/*"]
       }
       principals {
         type = "Service"
