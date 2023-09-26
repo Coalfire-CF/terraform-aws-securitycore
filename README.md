@@ -3,7 +3,13 @@
 
 </div>
 
-## ACE-AWS-SecurityCore Module
+# AWS Security Core Terraform Module
+
+## Description
+
+This module creates the necessary resources to store your Terraform code remotely in AWS.
+
+FedRAMP Compliance: Moderate, High
 
 ## Dependencies
 
@@ -16,15 +22,12 @@
 - KMS keys for DynamoDB and S3
 - IAM roles for above resources
 
-## Code Updates
-
-
 ## Deployment Steps
 
 This module can be called as outlined below.
 
-- Change directories to the `reponame` directory.
-- From the `terraform/aws/security-core` directory run `terraform init`.
+- Change directories to the `terraform-aws-securitycore` directory.
+- From the `terraform-aws-security-core` directory run `terraform init`.
 - Run `terraform plan` to review the resources being created.
 - If everything looks correct in the plan output, run `terraform apply`.
 
@@ -37,8 +40,8 @@ provider "aws" {
   features {}
 }
 
-module "securitycore" {
-  source                    = "github.com/Coalfire-CF/ACE-AWS-SecurityCore?ref=draft"
+module "security-core" {
+  source = "github.com/Coalfire-CF/terraform-aws-securitycore"
   aws_region = "us-gov-west-1"
   resource_prefix = var.resource_prefix
   application_account_numbers = var.app_account_ids
