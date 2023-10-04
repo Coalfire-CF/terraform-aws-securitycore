@@ -3,82 +3,28 @@
 
 </div>
 
-# Coalfire pak README Template
-
-## Repository Title
-
-Include the name of the Repository as the header above e.g. `ACE-Cloud-Service`
+## ACE-AWS-SecurityCore Module
 
 ## Dependencies
 
-List any dependencies here. E.g. security-core, region-setup
+- IAM AWS Accounts
 
 ## Resource List
 
-Insert a high-level list of resources created as a part of this module. E.g.
-
-- Storage Account
-- Containers
-- Storage share
-- Lifecycle policy
-- CMK key and Iam Role Assignment
-- Monitor diagnostic setting
+- S3 for Terraform State
+- DynamoDB for Terraform State
+- KMS keys for DynamoDB and S3
+- IAM roles for above resources
 
 ## Code Updates
 
-If applicable, add here. For example, updating variables, updating `tstate.tf`, or remote data sources.
-
-`tstate.tf` Update to the appropriate version and storage accounts, see sample
-
-``` hcl
-terraform {
-  required_version = ">= 1.1.7"
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.45.0"
-    }
-  }
-  backend "azurerm" {
-    resource_group_name  = "prod-mp-core-rg"
-    storage_account_name = "prodmpsatfstate"
-    container_name       = "tfstatecontainer"
-    environment          = "usgovernment"
-    key                  = "ad.tfstate"
-  }
-}
-```
-
-Change directory to the `active-directory` folder
-
-Run `terraform init` to download modules and create initial local state file.
-
-Run `terraform plan` to ensure no errors and validate plan is deploying expected resources.
-
-Run `terraform apply` to deploy infrastructure.
-
-Update the `remote-data.tf` file to add the security state key
-
-``` hcl
-
-data "terraform_remote_state" "usgv-ad" {
-  backend = "azurerm"
-  config = {
-    storage_account_name = "${local.storage_name_prefix}satfstate"
-    resource_group_name  = "${local.resource_prefix}-core-rg"
-    container_name       = "${var.location_abbreviation}${var.app_abbreviation}tfstatecontainer"
-    environment          = var.az_environment
-    key                  = "${var.location_abbreviation}-ad.tfstate"
-  }
-}
-```
 
 ## Deployment Steps
 
 This module can be called as outlined below.
 
 - Change directories to the `reponame` directory.
-- From the `terraform/azure/reponame` directory run `terraform init`.
+- From the `terraform/aws/security-core` directory run `terraform init`.
 - Run `terraform plan` to review the resources being created.
 - If everything looks correct in the plan output, run `terraform apply`.
 
@@ -87,50 +33,20 @@ This module can be called as outlined below.
 Include example for how to call the module below with generic variables
 
 ```hcl
-provider "azurerm" {
+provider "aws" {
   features {}
 }
 
-module "core_sa" {
-  source                    = "github.com/Coalfire-CF/ACE-Azure-StorageAccount?ref=vX.X.X"
-  name                       = "${replace(var.resource_prefix, "-", "")}tfstatesa"
-  resource_group_name        = azurerm_resource_group.management.name
-  location                   = var.location
-  account_kind               = "StorageV2"
-  ip_rules                   = var.ip_for_remote_access
-  diag_log_analytics_id      = azurerm_log_analytics_workspace.core-la.id
-  virtual_network_subnet_ids = var.fw_virtual_network_subnet_ids
-  tags                       = var.tags
-
-  #OPTIONAL
-  public_network_access_enabled = true
-  enable_customer_managed_key   = true
-  cmk_key_vault_id              = module.core_kv.id
-  cmk_key_vault_key_name        = azurerm_key_vault_key.tfstate-cmk.name
-  storage_containers = [
-    "tfstate"
-  ]
-  storage_shares = [
-    {
-      name = "test"
-      quota = 500
-    }
-  ]
-  lifecycle_policies = [
-    {
-      prefix_match = ["tfstate"]
-      version = {
-        delete_after_days_since_creation = 90
-      }
-    }
-  ]
+module "securitycore" {
+  source                    = "github.com/Coalfire-CF/ACE-AWS-SecurityCore?ref=draft"
+  aws_region = "us-gov-west-1"
+  resource_prefix = var.resource_prefix
+  application_account_numbers = var.app_account_ids
+  account_number = data.aws_caller_identiy.mgmt_account.id
 }
 ```
 
 <!-- BEGIN_TF_DOCS -->
-
-ALLOW TERRAFORM MARKDOWN GITHUB ACTION TO POPULATE THE BELOW
-
 ## Requirements
 
 No requirements.
@@ -139,27 +55,44 @@ No requirements.
 
 | Name | Version |
 |------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_dynamo_kms_key"></a> [dynamo\_kms\_key](#module\_dynamo\_kms\_key) | github.com/Coalfire-CF/ACE-AWS-KMS | draftv0.0.2 |
+| <a name="module_s3-tstate"></a> [s3-tstate](#module\_s3-tstate) | github.com/Coalfire-CF/ACE-AWS-S3 | draftv0.0.2 |
+| <a name="module_s3_kms_key"></a> [s3\_kms\_key](#module\_s3\_kms\_key) | github.com/Coalfire-CF/ACE-AWS-KMS | draftv0.0.2 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [aws_dynamodb_table.dynamodb_](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
+| [aws_iam_policy_document.s3_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.tfstate_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_account_number"></a> [account\_number](#input\_account\_number) | account number for the mgmt account | `string` | n/a | yes |
+| <a name="input_application_account_numbers"></a> [application\_account\_numbers](#input\_application\_account\_numbers) | Account IDs for application accounts to be used in IAM | `string` | n/a | yes |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | The AWS region to create things in | `string` | n/a | yes |
+| <a name="input_resource_prefix"></a> [resource\_prefix](#input\_resource\_prefix) | The prefix for the s3 bucket names | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-
+| <a name="output_dynamo_key_arn"></a> [dynamo\_key\_arn](#output\_dynamo\_key\_arn) | The arn of the dynamo kms key |
+| <a name="output_dynamo_key_id"></a> [dynamo\_key\_id](#output\_dynamo\_key\_id) | The id of the dynamo key |
+| <a name="output_s3_key_arn"></a> [s3\_key\_arn](#output\_s3\_key\_arn) | The arn of the s3 kms key |
+| <a name="output_s3_key_iam"></a> [s3\_key\_iam](#output\_s3\_key\_iam) | The name of the terraform state bucket |
+| <a name="output_s3_key_id"></a> [s3\_key\_id](#output\_s3\_key\_id) | The id of the s3 key |
+| <a name="output_tstate_bucket_name"></a> [tstate\_bucket\_name](#output\_tstate\_bucket\_name) | The name of the terraform state bucket |
 <!-- END_TF_DOCS -->
 
 ## Contributing
