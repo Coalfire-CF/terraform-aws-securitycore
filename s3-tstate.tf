@@ -7,5 +7,6 @@ module "s3-tstate" {
   block_public_acls       = true
   ignore_public_acls      = true
   restrict_public_buckets = true
+  bucket_policy           = true
   aws_iam_policy_document = data.aws_iam_policy_document.tfstate_bucket_policy.json
 }
