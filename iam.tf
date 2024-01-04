@@ -5,12 +5,12 @@ data "aws_iam_policy_document" "s3_key" {
     content {
       effect = "Allow"
       actions = [
-        "kms:*"]
+      "kms:*"]
       resources = [
-        "*"]
+      "*"]
       principals {
         identifiers = [
-          "arn:${data.aws_partition.current.partition}:iam::${statement.value}:root"]
+        "arn:${data.aws_partition.current.partition}:iam::${statement.value}:root"]
         type = "AWS"
       }
     }
@@ -19,13 +19,13 @@ data "aws_iam_policy_document" "s3_key" {
   statement {
     effect = "Allow"
     actions = [
-      "kms:*"]
+    "kms:*"]
     resources = [
-      "*"]
+    "*"]
     principals {
       type = "AWS"
       identifiers = [
-        "arn:${data.aws_partition.current.partition}:iam::${var.account_number}:root"]
+      "arn:${data.aws_partition.current.partition}:iam::${var.account_number}:root"]
     }
   }
 
@@ -39,12 +39,12 @@ data "aws_iam_policy_document" "s3_key" {
       "kms:DescribeKey",
     ]
     resources = [
-      "*"]
+    "*"]
 
     principals {
       type = "Service"
       identifiers = [
-        "delivery.logs.amazonaws.com"]
+      "delivery.logs.amazonaws.com"]
     }
   }
 
@@ -58,32 +58,32 @@ data "aws_iam_policy_document" "s3_key" {
       "kms:DescribeKey",
     ]
     resources = [
-      "*"]
+    "*"]
 
     principals {
       type = "Service"
       identifiers = [
-        "logs.${var.aws_region}.amazonaws.com"]
+      "logs.${var.aws_region}.amazonaws.com"]
     }
   }
 
   statement {
-    sid = "Enable CloudTrail Encrypt Permissions"
+    sid    = "Enable CloudTrail Encrypt Permissions"
     effect = "Allow"
     actions = [
-      "kms:GenerateDataKey*"]
+    "kms:GenerateDataKey*"]
     resources = [
-      "*"]
+    "*"]
     condition {
-      test = "StringLike"
+      test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
       values = [
-        "arn:${data.aws_partition.current.partition}:cloudtrail:*:${var.account_number}:trail/*"]
+      "arn:${data.aws_partition.current.partition}:cloudtrail:*:${var.account_number}:trail/*"]
     }
     principals {
       type = "Service"
       identifiers = [
-        "cloudtrail.amazonaws.com"]
+      "cloudtrail.amazonaws.com"]
     }
   }
 
@@ -92,19 +92,19 @@ data "aws_iam_policy_document" "s3_key" {
     content {
       effect = "Allow"
       actions = [
-        "kms:GenerateDataKey*"]
+      "kms:GenerateDataKey*"]
       resources = [
-        "*"]
+      "*"]
       condition {
-        test = "StringLike"
+        test     = "StringLike"
         variable = "kms:EncryptionContext:aws:cloudtrail:arn"
         values = [
-          "arn:${data.aws_partition.current.partition}:cloudtrail:*:${statement.value}:trail/*"]
+        "arn:${data.aws_partition.current.partition}:cloudtrail:*:${statement.value}:trail/*"]
       }
       principals {
         type = "Service"
         identifiers = [
-          "cloudtrail.amazonaws.com"]
+        "cloudtrail.amazonaws.com"]
       }
     }
   }
@@ -126,10 +126,4 @@ data "aws_iam_policy_document" "tfstate_bucket_policy" {
       resources = ["${module.s3-tstate.arn}/*", module.s3-tstate.arn]
     }
   }
-}
-
-resource "aws_iam_policy" "tfstate_bucket_policy" {
-  name        = "tfstate_bucket_policy"
-  description = "Policy for tfstate bucket"
-  policy      = data.aws_iam_policy_document.tfstate_bucket_policy.json
 }

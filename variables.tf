@@ -16,7 +16,7 @@ variable "application_account_numbers" {
 
 variable "account_number" {
   description = "account number for the mgmt account"
-  type = string
+  type        = string
 }
 
 variable "create_dynamo_kms_key" {
