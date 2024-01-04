@@ -127,3 +127,9 @@ data "aws_iam_policy_document" "tfstate_bucket_policy" {
     }
   }
 }
+
+resource "aws_iam_policy" "tfstate_bucket_policy" {
+  name        = "tfstate_bucket_policy"
+  description = "Policy for tfstate bucket"
+  policy      = data.aws_iam_policy_document.tfstate_bucket_policy.json
+}

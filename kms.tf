@@ -9,7 +9,7 @@ module "s3_kms_key" {
 module "dynamo_kms_key" {
   source = "github.com/Coalfire-CF/terraform-aws-kms"
 
-  kms_key_resource_type = "dyanmo"
+  kms_key_resource_type = "dynamodb"
   resource_prefix       = var.resource_prefix
 }
 
