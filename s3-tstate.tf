@@ -19,7 +19,7 @@ module "s3-tstate" {
       enable_current_object_expiration     = false
       enable_noncurrent_version_expiration = false
 
-      abort_incomplete_multipart_upload_days     = 1
+      abort_incomplete_multipart_upload_days = 1
     }
   ]
 }
