@@ -14,21 +14,12 @@ variable "application_account_numbers" {
 
 }
 
-variable "account_number" {
-  description = "account number for the mgmt account"
+variable "dynamo_kms_key_arn" {
+  description = "ARN for the CMK KMS key for DynamoDB"
   type        = string
 }
 
-variable "create_dynamo_kms_key" {
-  description = "create KMS key for dynamodb"
-  type        = bool
-  default     = true
+variable "s3_kms_key_arn" {
+  description = "ARN for the CMK KMS key for S3"
+  type        = string
 }
-
-variable "create_s3_kms_key" {
-  description = "create KMS key for S3"
-  type        = bool
-  default     = true
-}
-
-
