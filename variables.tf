@@ -11,7 +11,6 @@ variable "resource_prefix" {
 variable "application_account_numbers" {
   description = "Account IDs for application accounts to be used in IAM"
   type        = list(string)
-
 }
 
 variable "dynamo_kms_key_arn" {
