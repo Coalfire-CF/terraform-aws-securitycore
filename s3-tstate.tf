@@ -7,7 +7,7 @@ module "s3-tstate" {
   block_public_acls       = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-  bucket_policy           = true
+  bucket_policy           = length([for account in var.application_account_numbers : account if account != ""]) > 0
   aws_iam_policy_document = data.aws_iam_policy_document.tfstate_bucket_policy.json
 
   lifecycle_configuration_rules = [
