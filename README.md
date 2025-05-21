@@ -28,6 +28,24 @@ This module can be called as outlined below.
 - Run `terraform plan` to review the resources being created.
 - If everything looks correct in the plan output, run `terraform apply`.
 
+## Lock State File
+
+DynamoDB has been removed from security core in favor of S3-native state locking. To utilize S3-native locking, you will remove the dynamodb_table line from your tstate.tf file and/or your backends/tfvars and replace it with use_lockfile=true. This is how your tstate.tf file should look:
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "<environment-name>>-us-gov-west-1-tf-state"
+    region         = "us-gov-west-1"
+    key            = "<environment-name>/us-gov-west-1/account-setup.tfstate"
+    encrypt        = true
+    use_lockfile   = true
+  }
+}
+```
+
+With S3-native state locking, the lock file will now appear in the designated bucket assigned in the tstate.tf file. The name of the lock file will be the same as the state file with a .tflock extension added to the end. This can be tested by running a terraform plan and refreshing the tfstate S3 bucket; you should see the lock file appear and then disappear when the Terraform code is done running. 
+
 ## Usage
 
 Include example for how to call the module below with generic variables
