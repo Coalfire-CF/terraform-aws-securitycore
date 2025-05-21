@@ -13,11 +13,6 @@ variable "application_account_numbers" {
   type        = list(string)
 }
 
-variable "dynamo_kms_key_arn" {
-  description = "ARN for the CMK KMS key for DynamoDB"
-  type        = string
-}
-
 variable "s3_kms_key_arn" {
   description = "ARN for the CMK KMS key for S3"
   type        = string

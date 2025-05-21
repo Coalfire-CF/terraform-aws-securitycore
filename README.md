@@ -10,13 +10,12 @@ FedRAMP Compliance: Moderate, High
 
 ## Dependencies
 
-- IAM AWS Accounts
+- IAM access to AWS Account(s)
 
 ## Resource List
 
 - S3 for Terraform State
-- DynamoDB for Terraform State
-- KMS keys for DynamoDB and S3
+- KMS keys for S3
 - IAM roles for above resources
 
 ## Deployment Steps
@@ -56,11 +55,14 @@ provider "aws" {
 }
 
 module "security-core" {
-  source = "github.com/Coalfire-CF/terraform-aws-securitycore"
-  aws_region = "us-gov-west-1"
-  resource_prefix = var.resource_prefix
-  application_account_numbers = var.app_account_ids
-  account_number = data.aws_caller_identiy.mgmt_account.id
+  source = "github.com/Coalfire-CF/terraform-aws-securitycore?ref=vX.X.X"
+
+  application_account_numbers = var.application_account_numbers
+  aws_region                  = var.aws_region
+  resource_prefix             = var.resource_prefix
+
+  # KMS Keys
+  s3_kms_key_arn     = module.s3_kms_key[0].kms_key_arn
 }
 ```
 
@@ -96,7 +98,6 @@ module "security-core" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_account_numbers"></a> [application\_account\_numbers](#input\_application\_account\_numbers) | Account IDs for application accounts to be used in IAM | `list(string)` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | The AWS region to create things in | `string` | n/a | yes |
-| <a name="input_dynamo_kms_key_arn"></a> [dynamo\_kms\_key\_arn](#input\_dynamo\_kms\_key\_arn) | ARN for the CMK KMS key for DynamoDB | `string` | n/a | yes |
 | <a name="input_resource_prefix"></a> [resource\_prefix](#input\_resource\_prefix) | The prefix for the s3 bucket names | `string` | n/a | yes |
 | <a name="input_s3_kms_key_arn"></a> [s3\_kms\_key\_arn](#input\_s3\_kms\_key\_arn) | ARN for the CMK KMS key for S3 | `string` | n/a | yes |
 
@@ -148,7 +149,6 @@ Copyright © 2023 Coalfire Systems Inc.
 
 | Name | Type |
 |------|------|
-| [aws_dynamodb_table.dynamodb_](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
 | [aws_iam_policy_document.tfstate_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
@@ -157,7 +157,6 @@ Copyright © 2023 Coalfire Systems Inc.
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_account_numbers"></a> [application\_account\_numbers](#input\_application\_account\_numbers) | Account IDs for application accounts to be used in IAM | `list(string)` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | The AWS region to create things in | `string` | n/a | yes |
-| <a name="input_dynamo_kms_key_arn"></a> [dynamo\_kms\_key\_arn](#input\_dynamo\_kms\_key\_arn) | ARN for the CMK KMS key for DynamoDB | `string` | n/a | yes |
 | <a name="input_resource_prefix"></a> [resource\_prefix](#input\_resource\_prefix) | The prefix for the s3 bucket names | `string` | n/a | yes |
 | <a name="input_s3_kms_key_arn"></a> [s3\_kms\_key\_arn](#input\_s3\_kms\_key\_arn) | ARN for the CMK KMS key for S3 | `string` | n/a | yes |
 
@@ -165,9 +164,6 @@ Copyright © 2023 Coalfire Systems Inc.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_dynamo_key_arn"></a> [dynamo\_key\_arn](#output\_dynamo\_key\_arn) | The arn of the dynamo kms key |
-| <a name="output_dynamo_key_id"></a> [dynamo\_key\_id](#output\_dynamo\_key\_id) | The id of the dynamo key |
-| <a name="output_dynamodb_table_name"></a> [dynamodb\_table\_name](#output\_dynamodb\_table\_name) | n/a |
 | <a name="output_s3_key_arn"></a> [s3\_key\_arn](#output\_s3\_key\_arn) | The arn of the s3 kms key |
 | <a name="output_s3_key_iam"></a> [s3\_key\_iam](#output\_s3\_key\_iam) | The name of the terraform state bucket |
 | <a name="output_s3_key_id"></a> [s3\_key\_id](#output\_s3\_key\_id) | The id of the s3 key |
