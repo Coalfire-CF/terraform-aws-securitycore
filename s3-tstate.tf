@@ -1,5 +1,5 @@
 module "s3-tstate" {
-  source = "github.com/Coalfire-CF/terraform-aws-s3?ref=v1.0.4"
+  source = "git::https://github.com/Coalfire-CF/terraform-aws-s3?ref=v1.0.4"
 
   name                    = "${var.resource_prefix}-${var.aws_region}-tf-state"
   kms_master_key_id       = var.s3_kms_key_arn
