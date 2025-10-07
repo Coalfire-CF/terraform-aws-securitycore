@@ -235,3 +235,20 @@ Copyright © 2023 Coalfire Systems Inc.
 | <a name="output_s3_key_id"></a> [s3\_key\_id](#output\_s3\_key\_id) | The id of the s3 key |
 | <a name="output_tstate_bucket_name"></a> [tstate\_bucket\_name](#output\_tstate\_bucket\_name) | The name of the terraform state bucket |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Tree
+```
+.
+|-- CHANGELOG.md
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- License.md
+|-- README.md
+|-- coalfire_logo.png
+|-- iam.tf
+|-- outputs.tf
+|-- providers.tf
+|-- release-please-config.json
+|-- s3-tstate.tf
+|-- variables.tf
+```
