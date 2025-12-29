@@ -17,3 +17,9 @@ variable "s3_kms_key_arn" {
   description = "ARN for the CMK KMS key for S3"
   type        = string
 }
+
+variable "backup_policy_name" {
+  description = "Name of the backup policy to apply"
+  type        = string
+  default     = "aws-backup-minimum-compliance"
+}
