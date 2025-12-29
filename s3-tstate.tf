@@ -9,4 +9,8 @@ module "s3-tstate" {
   restrict_public_buckets = true
   bucket_policy           = length([for account in var.application_account_numbers : account if account != ""]) > 0
   aws_iam_policy_document = data.aws_iam_policy_document.tfstate_bucket_policy.json
+
+  tags = {
+    backup_policy = var.backup_policy_name
+  } 
 }
