@@ -159,6 +159,7 @@ SSO-based authentication (via IAM Identity Center SSO):
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_account_numbers"></a> [application\_account\_numbers](#input\_application\_account\_numbers) | Account IDs for application accounts to be used in IAM | `list(string)` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | The AWS region to create things in | `string` | n/a | yes |
+| <a name="input_backup_policy_name"></a> [backup\_policy\_name](#input\_backup\_policy\_name) | Name of the backup policy to apply | `string` | `"aws-backup-minimum-compliance"` | no |
 | <a name="input_resource_prefix"></a> [resource\_prefix](#input\_resource\_prefix) | The prefix for the s3 bucket names | `string` | n/a | yes |
 | <a name="input_s3_kms_key_arn"></a> [s3\_kms\_key\_arn](#input\_s3\_kms\_key\_arn) | ARN for the CMK KMS key for S3 | `string` | n/a | yes |
 
