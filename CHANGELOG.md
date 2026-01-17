@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/Coalfire-CF/terraform-aws-securitycore/compare/v0.1.0...v0.1.1) (2026-01-17)
+
+
+### Miscellaneous
+
+* remove duplicate License.md file ([#65](https://github.com/Coalfire-CF/terraform-aws-securitycore/issues/65)) ([74a16a3](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/74a16a3b4791c083f7bda2a61b8056a9ec143d99))
+
 ## [0.1.0](https://github.com/Coalfire-CF/terraform-aws-securitycore/compare/v0.0.24...v0.1.0) (2026-01-15)
 
 
