@@ -145,7 +145,7 @@ SSO-based authentication (via IAM Identity Center SSO):
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_s3-tstate"></a> [s3-tstate](#module\_s3-tstate) | git::https://github.com/Coalfire-CF/terraform-aws-s3 | v1.0.4 |
+| <a name="module_s3-tstate"></a> [s3-tstate](#module\_s3-tstate) | git::https://github.com/Coalfire-CF/terraform-aws-s3 | v1.1.0 |
 
 ## Resources
 
