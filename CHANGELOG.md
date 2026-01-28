@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.1.1](https://github.com/Coalfire-CF/terraform-aws-securitycore/compare/v0.1.0...v0.1.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* tf validate workflow ([76c0ff9](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/76c0ff9070ac744f57d1400dedd6d543b671956b))
+* tf validate workflow ([d2a397b](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/d2a397b7ae735e44964528dcc1426dcbb802d5ea))
+* use correct CoalForge team slug ([ac713d5](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/ac713d5e781a2fc9b75e5b9e14ba27692080b06e))
+
+
+### Miscellaneous
+
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-checkov.yml ([c5ca0b6](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/c5ca0b6a7ff062c66cf6f6d35ff53686c68bbdeb))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-checkov.yml from 0.1.1 to 0.2.1 ([03dc356](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/03dc356414cc2d364950462607768f93c415514b))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-dependabot.yml ([55fd821](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/55fd821028777b7c05908e6183ded7ea04a8f87e))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-dependabot.yml from 0.1.1 to 0.2.1 ([a62e42d](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/a62e42d0d0b2ff1adda9a8071bc61c192162a262))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-markdown-lint.yml ([ef680d8](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/ef680d84cff54737c5a27f3cbe95071193096407))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-markdown-lint.yml from 0.1.1 to 0.2.1 ([9c56d93](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/9c56d93d35565f9c1ab2f31f1f89c0e5c4e80fb8))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-docs.yml ([0475956](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/047595693512e7688e2abbccccdb33373179ba9a))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-docs.yml from 0.1.1 to 0.2.1 ([dac1898](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/dac18988c2530117004238d46fbffe8d2acb9aec))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-fmt.yml ([82b0235](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/82b0235dd2aff954a9d893f620842357e9fd9685))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-fmt.yml from 0.1.1 to 0.2.1 ([4fd34f2](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/4fd34f21deac99d32970608702e8dfe3b5cb8804))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-validate.yml ([d0d2246](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/d0d224614db0b4cc2156c620e5289613fdac9ecb))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-validate.yml from 0.1.1 to 0.2.1 ([d54d329](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/d54d329a1941a34b67d3391342b896d85f268783))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-tree-readme.yml ([f581d5d](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/f581d5d3a431c7a7e8dcfa53bef1c4d0f3946adf))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-tree-readme.yml from 0.1.1 to 0.2.1 ([f4381e9](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/f4381e942a07d75e9de75f9b4e789fe37a8b8dd3))
+* remove duplicate License.md file ([#65](https://github.com/Coalfire-CF/terraform-aws-securitycore/issues/65)) ([74a16a3](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/74a16a3b4791c083f7bda2a61b8056a9ec143d99))
+* update CODEOWNERS ([8f51894](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/8f5189498ff6d5dabdbafcc6abe09ee2237b0a83))
+* update CODEOWNERS ([bc8a9a1](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/bc8a9a1bcd7d084884142cddb3e1c196e5eae488))
+* update org-release.yml to v0.2.1 ([#67](https://github.com/Coalfire-CF/terraform-aws-securitycore/issues/67)) ([832834f](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/832834f0e9ab4c2774f17dc0c4cb285151bab943))
+* update README tree ([c9b2fd1](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/c9b2fd16da1d209588baf7a7b95c271f9129dcec))
+* update README tree ([eef7271](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/eef7271c8f3b0b94c881a86146df8b34626a332f))
+* update README tree ([2f023ed](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/2f023edf99a9459d248abd136adab4e6d670022b))
+* update README tree ([7b429d1](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/7b429d17f6b41e87e80300180254bf5148468b3e))
+* update README tree ([08111c8](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/08111c8ad2706053182976f905ddfcb31844a857))
+* update README tree ([e4e0404](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/e4e0404dcd8f94b71f070e5b45551bf42390839a))
+
 ## [0.1.0](https://github.com/Coalfire-CF/terraform-aws-securitycore/compare/v0.0.24...v0.1.0) (2026-01-15)
 
 
