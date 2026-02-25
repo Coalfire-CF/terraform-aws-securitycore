@@ -247,8 +247,8 @@ Copyright © 2023 Coalfire Systems Inc.
 |-- coalfire_logo.png
 |-- iam.tf
 |-- outputs.tf
-|-- providers.tf
 |-- release-please-config.json
+|-- required_providers.tf
 |-- s3-tstate.tf
 |-- variables.tf
 ```
