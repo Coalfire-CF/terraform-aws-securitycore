@@ -12,5 +12,5 @@ module "s3-tstate" {
 
   tags = {
     backup_policy = var.backup_policy_name
-  } 
+  }
 }
