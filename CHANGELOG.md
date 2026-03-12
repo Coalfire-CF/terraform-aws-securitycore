@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.1.2](https://github.com/Coalfire-CF/terraform-aws-securitycore/compare/v0.1.1...v0.1.2) (2026-03-12)
+
+
+### Miscellaneous
+
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-checkov.yml ([59a91ea](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/59a91ea2db9ca1bd482ffbef6296cfb21b19dc8d))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-checkov.yml from 0.3.1 to 0.3.2 ([f9fee92](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/f9fee92053126d30020960e2b8aadbcfb977e12f))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-markdown-lint.yml ([6087a96](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/6087a96956cda1d35001ed243782a27ad101a06d))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-markdown-lint.yml from 0.3.1 to 0.3.2 ([30e2ed5](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/30e2ed5b430fc38170f299443cb815fc7a5c56fb))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-release.yml ([4a365d2](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/4a365d220453826a191f062f0c1bd1cf23410d90))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-release.yml from 0.3.1 to 0.3.2 ([cb22a51](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/cb22a51d65e2ab83891ecc90beb21495626c4589))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-fmt.yml ([3acf907](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/3acf90772a8cf2bdc1b1c077cf6d15ecb5076e49))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-fmt.yml from 0.3.1 to 0.3.2 ([d022fa3](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/d022fa37d04345d05424a908f401e6c1d4787b42))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-validate.yml ([d1fd0bd](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/d1fd0bd37efed57ced00d6f18eb43acb07c23381))
+* **deps:** bump Coalfire-CF/Actions/.github/workflows/org-terraform-validate.yml from 0.3.1 to 0.3.2 ([c49125f](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/c49125fb79b0a4b922e68f1dad4c1e038c6f25ab))
+* mass update push by coalforge ([06613ef](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/06613efa51cc4d39be094ce700a8b0502b53da8b))
+* update PR template ([86aedf5](https://github.com/Coalfire-CF/terraform-aws-securitycore/commit/86aedf51971962467d0858c7d387e13274fed605))
+
 ## [0.1.1](https://github.com/Coalfire-CF/terraform-aws-securitycore/compare/v0.1.0...v0.1.1) (2026-02-25)
 
 
